@@ -2,41 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Travel-themed design system with vibrant colors and gradients */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base colors */
+    --background: 255 255 255;
+    --foreground: 15 23 42;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Travel-themed primary colors */
+    --primary: 14 165 233; /* Sky blue */
+    --primary-foreground: 255 255 255;
+    --primary-hover: 2 132 199;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Travel accent colors */
+    --secondary: 249 115 22; /* Vibrant orange */
+    --secondary-foreground: 255 255 255;
+    --secondary-hover: 234 88 12;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Success and highlights */
+    --success: 34 197 94;
+    --success-foreground: 255 255 255;
+    
+    /* Card and surface colors */
+    --card: 255 255 255;
+    --card-foreground: 15 23 42;
+    --card-hover: 248 250 252;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Muted colors */
+    --muted: 248 250 252;
+    --muted-foreground: 100 116 139;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Input and border */
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 14 165 233;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(14 165 233) 0%, hsl(59 130 246) 50%, hsl(147 51 234) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(255 255 255) 0%, hsl(248 250 252) 100%);
+    --gradient-offer: linear-gradient(135deg, hsl(249 115 22) 0%, hsl(251 146 60) 100%);
+    --gradient-destination: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Shadows */
+    --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-card-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-hero: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +119,42 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+  }
+}
+
+@layer components {
+  /* Hero button variant */
+  .btn-hero {
+    @apply bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300;
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-1;
+  }
+
+  /* Destination card overlay */
+  .destination-overlay {
+    background: var(--gradient-destination);
+  }
+
+  /* Search tab active state */
+  .tab-active {
+    @apply bg-primary text-primary-foreground shadow-md;
+  }
+
+  /* Offer badge */
+  .offer-badge {
+    @apply bg-gradient-to-r from-secondary to-secondary-hover text-white px-3 py-1 rounded-full text-sm font-semibold;
+  }
+
+  /* Smooth animations */
+  .animate-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .animate-bounce-subtle {
+    transition: var(--transition-bounce);
   }
 }
